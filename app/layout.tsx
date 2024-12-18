@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 import './globals.css';
+import Image from 'next/image';
+import mainImg from '../public/main-img.svg';
 
 const poppins = Poppins({
   variable: '--font-poppins',
@@ -20,7 +22,26 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.className} antialiased`}>{children}</body>
+      <body className={`${poppins.className} antialiased`}>
+        <main className="flex w-full h-screen">
+          <section className="flex-none w-1/2">{children}</section>
+          <section
+            className="flex-auto relative"
+            style={{ borderTopLeftRadius: '10rem' }}
+          >
+            <Image
+              src={mainImg}
+              alt="main-image"
+              objectFit="cover"
+              fill
+              style={{
+                borderTopLeftRadius: '40px',
+                borderBottomLeftRadius: '40px',
+              }}
+            />
+          </section>
+        </main>
+      </body>
     </html>
   );
 }
